@@ -1,13 +1,20 @@
 {
-  description = "Hello in Rust";
-
-  inputs.floxpkgs.url = "/home/tom/flox/floxpkgs";
-
+  description = "Floxpkgs/Project Template";
   nixConfig.bash-prompt = "[flox] \\[\\033[38;5;172m\\]λ \\[\\033[0m\\]";
+  inputs.floxpkgs.url = "github:flox/floxpkgs";
 
-  outputs = args @ {floxpkgs, ...}: floxpkgs.project args ( { self, inputs, lib, ...  }: {
-    passthru = {
-      inherit (inputs.floxpkgs.inputs.nixpkgs) evalCatalog catalog;
-    };
-  });
+  # Declaration of external resources
+  # =================================
+
+  # =================================
+
+  outputs = args @ {floxpkgs, ...}:
+    floxpkgs.project args (_: {
+      config.extraPlugins = [
+        (floxpkgs.inputs.flox-extras.plugins.floxEnvs {
+          sourceType = "packages";
+          dir = "pkgs";
+        })
+      ];
+    });
 }
