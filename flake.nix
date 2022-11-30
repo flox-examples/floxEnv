@@ -1,7 +1,7 @@
 {
   description = "Floxpkgs/Project Template";
   nixConfig.bash-prompt = "[flox] \\[\\033[38;5;172m\\]λ \\[\\033[0m\\]";
-  inputs.floxpkgs.url = "github:flox/floxpkgs/remove_flox-extras";
+  inputs.floxpkgs.url = "github:flox/floxpkgs";
 
   # Declaration of external resources
   # =================================
